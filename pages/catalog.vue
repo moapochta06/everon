@@ -1,0 +1,3 @@
+<template>
+    ;sojs;orij
+</template>
