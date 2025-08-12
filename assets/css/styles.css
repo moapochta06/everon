@@ -1,0 +1,14 @@
+:root {
+    --font-sans: 'OpenSans', sans-serif;
+    --text-color: #fff;
+    --primary: #2044F7;
+    --secondary: #041366;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0 ;
+    padding: 0;
+    font-family: var(--font-sans);
+    color: blue;
+}
