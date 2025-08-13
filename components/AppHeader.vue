@@ -38,7 +38,7 @@
                     <a href="#" class="tiktok"><img src="../public/images/social/TikTok.svg" alt=""></a>
                 </div>
             </div>
-            <div class="container flex justify-between head">
+            <div class="container head">
                 <img src="../public/images/logo.svg" class="mob-img" alt="logo">
                 <div class="">
                     <form class="search-form" action="#">
@@ -52,12 +52,12 @@
                 </div>
             </div>
             <div class="bg-primary menu">
-                <nav class="nav flex justify-between">
+                <nav class="nav">
                     <a href="/catalog">Каталог</a>
                     <a href="/service">Услуги</a>
                     <a href="/about">Команда</a>
                     <a href="/projects">Проекты</a>
-                    <a href="/contact">Контакты</a>
+                    <a href="/contacts">Контакты</a>
                 </nav>
             </div>
         </div>

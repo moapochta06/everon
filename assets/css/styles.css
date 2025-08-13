@@ -1,6 +1,8 @@
 :root {
     --font-sans: 'OpenSans', sans-serif;
     --text-color: #fff;
+    --base: #23263B;
+    --bg: #EDEFF5;
     --primary: #2044F7;
     --secondary: #041366;
 }
@@ -10,6 +12,26 @@
     margin: 0 ;
     padding: 0;
     font-family: var(--font-sans);
+    color: var(--base);
+}
+
+h2,h3,h4 {
+    text-transform: uppercase;
+    color: var(--primary);
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+h4 {
+    font-size: 18px;
+    font-weight: 400;
 }
 
 ul {
@@ -32,10 +54,14 @@ input::placeholder {
   font-size: 14px;
 }
 
+.flex {
+    display: flex;
+}
+
 .container {
     margin: auto;
     max-width: 1170px;
-    padding: 0 20px;
+    /* padding: 0 20px; */
 }
 
 .bg-primary {
@@ -94,7 +120,7 @@ input::placeholder {
     position: absolute;
     top: 9px;
     right: 5px;
-    background: url(../../public/images/search.svg);
+    background: url(/public/images/search.svg);
     height: 40px;
     width: 40px;
     cursor: pointer;
@@ -105,22 +131,22 @@ img {
 }
 
 .number {
-    background: url(../../public/images/mobile.svg) no-repeat left center;
-    padding: 5px 0 7px 50px;
+    background: url(/public/images/mobile.svg) no-repeat left center;
+    padding: 7px 0 7px 50px;
     margin-right: 22px;
     font-size: 24px;
     font-weight: 700;
 }
 
 .mail {
-    background: url(../../public/images/mail.svg) no-repeat left center;
-    padding: 10px 0 10px 50px;
+    background: url(/public/images/mail.svg) no-repeat left center;
+    padding: 12px 0 12px 50px;
 }
 
 .mobile-menu {
     position: fixed;
     top: 66px;
-    right: -100%;
+    right: -105%;
     width: 100vw;
     height: 100vh;
     background: var(--secondary);
@@ -132,6 +158,10 @@ img {
     }
 
 @media(max-width:1280px){
+    .container {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
     .head {
         flex-wrap: wrap;
         padding: 41px 40px;
@@ -159,7 +189,7 @@ img {
 
 @media(max-width:640px){
     .container {
-        max-width: 600px;
+        max-width: 596px;
     }
     .head {
         flex-wrap: wrap;
@@ -191,7 +221,7 @@ img {
         display: none;
     }
     .number {
-        background: url(../../public/images/mobile_tel.svg) no-repeat left center;
+        background: url(/public/images/mobile_tel.svg) no-repeat left center;
         margin: 0;
         padding: 0 0 0 26px;
     }
