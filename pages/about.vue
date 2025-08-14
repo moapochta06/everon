@@ -83,11 +83,13 @@
                 </div>
             </div>
             <div class="galary"></div>
-            <div class="contact-form"></div>
+
         </div>
         <div class="sidebar">;owj</div>
 
     </div>
+    <CallbackForm />
+
 </template>
 
 <style scoped>
@@ -193,11 +195,11 @@ ul:last-of-type li span {
 .contact h3 {
     margin: 0;
     text-transform: none;
-    padding: 55px 0 12px;
+    padding: 50px 0 9px;
 }
 .contact p {
-    width: 544px;
-    margin-bottom: 10px;
+    max-width: 544px;
+    padding-bottom: 10px;
 }
 .contact a:first-of-type {
     margin-bottom: 10px;
