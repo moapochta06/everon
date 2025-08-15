@@ -207,4 +207,40 @@ ul:last-of-type li span {
 .sidebar {
     margin-left: 25px;
 }
+
+@media(max-width: 640px) {
+    ul {
+        flex-wrap: wrap;
+    }
+    .sidebar {
+        display: none;
+    }
+    .main-content {
+        width: 100%;
+    }
+}
+
+@media(max-width: 1024px) {
+    h2 {
+        font-size: 27px;
+    }
+    .contact h3 {
+    padding: 44px 0 9px;
+    }
+    .contact {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 380px){
+        .contact {
+            gap: 0;
+        }
+        img {
+            margin-bottom: 20px;
+        }
+        .contact h3 {
+            padding-top: 20px;
+    }
+}
 </style>

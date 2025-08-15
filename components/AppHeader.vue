@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="container head">
-                <img src="../public/images/logo.svg" class="mob-img" alt="logo">
+                <img src="../public/images/logo.svg"  alt="logo">
                 <div class="">
                     <form class="search-form" action="#">
                         <input class="search-inp" type="text" placeholder="Поиск товара">
@@ -95,3 +95,13 @@ onMounted(() => {
 })
 
 </script>
+
+<style scoped>
+@media (max-width: 640px) {
+    .number {
+        background: url(/public/images/mobile_tel.svg) no-repeat left center;
+        margin: 0;
+        padding: 0 0 0 26px;
+    }
+} 
+</style>

@@ -170,12 +170,13 @@ img {
 
 @media(max-width:1024px){
     .container {
-        max-width: 700px;
         justify-content: center;
     } 
     .head {
         flex-wrap: wrap;
         padding: 41px 40px;
+        flex-direction: column;
+        width: 554px;
     }
     img {
         padding: 0 0 20px;
@@ -190,8 +191,11 @@ img {
 @media(max-width:640px){
     .container {
         max-width: 596px;
+        padding: 0 20px;
+
     }
     .head {
+        width: 320px;
         flex-wrap: wrap;
         padding: 0;
         margin-bottom: 20px;
@@ -205,7 +209,7 @@ img {
         width: 320px;
     }
      .mobile-header {
-        padding: 15px 30px;
+        padding: 15px 20px;
         margin-bottom: 20px;
         display: flex;
         justify-content: space-between;
@@ -220,11 +224,7 @@ img {
     .menu, .contacts {
         display: none;
     }
-    .number {
-        background: url(/public/images/mobile_tel.svg) no-repeat left center;
-        margin: 0;
-        padding: 0 0 0 26px;
-    }
+
     .menu-burger {
         display: flex;
         flex-direction: column;

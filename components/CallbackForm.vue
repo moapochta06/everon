@@ -36,7 +36,9 @@
         {{ message.text }}
         </div>
         </form>
+        <!-- <img src="/public/images/mob-operator.png" alt=""> -->
     </div>
+    <div class="operator-mob"></div>
     
 </div>
 </template>
@@ -150,6 +152,7 @@ const handleSubmit = async () => {
 p {
     color: var(--text-color);
     line-height: 22px;
+    text-align: center;
 }
 .operator {
     position: absolute;
@@ -158,6 +161,9 @@ p {
     background: url(/public/images/operator.png) no-repeat;
     width: 585px;
     height: 585px;
+}
+.operator-mob {
+    display: none;
 }
 .numb {
     font-weight: 700;
@@ -189,6 +195,60 @@ button {
 .input-error::placeholder {
   color: rgb(203, 40, 40);
   opacity: 1;
+}
+
+@media(max-width: 1360px){
+    .operator {
+        display: none;
+    }
+}
+
+@media(max-width: 1024px) {
+    .callback-form {
+    width: 280px;
+    flex-wrap: wrap;
+    }
+    .title {
+    width: fit-content;
+    }
+}
+
+@media(max-width: 768px) {
+    .title div {
+    font-size: 10vw;
+    width: fit-content;
+    }
+    .title div:last-child {
+    margin-left: 170px;
+    }
+}
+
+@media (max-width: 640px) {
+    .title div {
+        line-height: 41px;
+    }
+    .title div:last-child {
+        margin-left: 130px;
+    }
+    .operator-mob {
+    margin-top: -100px;
+    display: block;
+    background: url(/public/images/mob-operator.png) no-repeat center center;
+    /* width: 337px; */
+    width: 100%;
+    height: 438px;
+}
+}
+
+@media (max-width:380px) {
+    .title div {
+        font-size: 40px;
+    }
+    .title div:last-child {
+        line-height: 31px;
+        margin-left: 103px;
+    }
+
 }
 
 </style>
