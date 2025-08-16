@@ -82,7 +82,7 @@
                     <a class="mail" href="mailto:everon@gmail.com">everon@gmail.com</a>
                 </div>
             </div>
-            <div class="galary"></div>
+            <Gallery />
 
         </div>
         <div class="sidebar">;owj</div>
