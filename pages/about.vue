@@ -82,12 +82,11 @@
                     <a class="mail" href="mailto:everon@gmail.com">everon@gmail.com</a>
                 </div>
             </div>
-            <Gallery />
-
         </div>
         <div class="sidebar">;owj</div>
 
     </div>
+    <Gallery />
     <CallbackForm />
 
 </template>
@@ -208,6 +207,23 @@ ul:last-of-type li span {
     margin-left: 25px;
 }
 
+
+@media(max-width: 1024px) {
+    .main-content {
+        width: 100%;
+    }
+    .contact h3 {
+    padding: 44px 0 9px;
+    }
+    .contact {
+        flex-wrap: wrap;
+    }
+    .sidebar {
+        display: none;
+    }
+}
+
+
 @media(max-width: 640px) {
     ul {
         flex-wrap: wrap;
@@ -217,18 +233,6 @@ ul:last-of-type li span {
     }
     .main-content {
         width: 100%;
-    }
-}
-
-@media(max-width: 1024px) {
-    h2 {
-        font-size: 27px;
-    }
-    .contact h3 {
-    padding: 44px 0 9px;
-    }
-    .contact {
-        flex-wrap: wrap;
     }
 }
 
