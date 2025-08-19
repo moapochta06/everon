@@ -90,7 +90,7 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
     text-transform: uppercase;
-    max-width: 760px;
+    max-width: 645px;
     margin: auto;
     padding: 21px 0;
 }
@@ -156,6 +156,12 @@ img {
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
+    }
+
+ .social {
+        display: flex;
+        gap: 17px;
+        margin-top: 10px;
     }
 
 @media(max-width:1280px){

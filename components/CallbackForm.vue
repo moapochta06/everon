@@ -1,5 +1,5 @@
 <template>
-<div class="bg">
+<div id="callback" class="bg">
     <div class="container">
         <div class="title">
             <div>Остались</div>
@@ -36,7 +36,6 @@
         {{ message.text }}
         </div>
         </form>
-        <!-- <img src="/public/images/mob-operator.png" alt=""> -->
     </div>
     <div class="operator-mob"></div>
     
