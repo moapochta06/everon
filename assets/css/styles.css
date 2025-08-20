@@ -140,7 +140,7 @@ img {
 }
 
 .mail {
-    background: url(/public/images/mail.svg) no-repeat left center;
+    background: url(/public/images/mail.svg) no-repeat left top;
     padding: 12px 0 12px 50px;
 }
 
