@@ -45,12 +45,12 @@
 <script setup>
 import { ref } from 'vue';
 
-const formData = ref({
+let formData = ref({
   name: '',
   phone: ''
 });
 
-const errors = ref({
+let errors = ref({
   name: '',
   phone: ''
 });

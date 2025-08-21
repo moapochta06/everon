@@ -43,7 +43,7 @@ a {
     color: var(--text-color);
 } 
 
-input,button {
+input,button,textarea {
     border: none;
     outline: none;
     background: none;
@@ -96,9 +96,6 @@ input::placeholder {
 }
 .nav a.active {
     color: var(--secondary); 
-    /* width: fit-content;
-    padding-bottom: 4px;
-    border-bottom: 1px solid var(--text-color); */
 }
 
 .search-form {
