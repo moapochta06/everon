@@ -134,11 +134,13 @@ img {
     margin-right: 22px;
     font-size: 24px;
     font-weight: 700;
+    line-height: 37px;
 }
 
 .mail {
-    background: url(/public/images/mail.svg) no-repeat left top;
+    background: url(/public/images/mail.svg) no-repeat left center;
     padding: 12px 0 12px 50px;
+    line-height: 30px;
 }
 
 .mobile-menu {

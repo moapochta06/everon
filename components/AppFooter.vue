@@ -297,7 +297,6 @@ p {
         margin: 10px 0 20px;
     }
     p {
-        /* margin-top: 46px; */
         text-align: center;
     }
 }

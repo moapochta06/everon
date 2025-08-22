@@ -145,7 +145,7 @@ form {
 }
 
 .form-group {
-    width: 237px;
+    width: 100%;
 }
 
 .form-group + .form-group {
@@ -294,5 +294,27 @@ button:disabled {
 
 .checkbox-item input:checked~.checkmark:after {
     display: block;
+}
+
+@media (max-width:1280px) {
+   .form-container {
+        margin: auto;
+        min-width: 277px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .form-container {
+        min-width: 277px;
+    }
+}
+
+@media (max-width: 380px) {
+    h2 {
+        margin-top: 32px;
+    }
+    .form-container {
+        width: 100%;
+    }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="zoomable-map">
+  <div class="zoomable-map">
     <div class="map-controls">
       <button @click="zoomIn" :disabled="zoom >= 18" class="zoom-btn">
         <span>+</span>
@@ -10,22 +10,25 @@
       <span class="zoom-level">Масштаб: {{ zoom }}</span>
     </div>
     <div class="map-container">
-        <img 
-        :src="mapUrl" 
-        alt="Интерактивная карта"
-        class="map-image"
-        @load="onLoad"
-        @error="onError"
-        />
-        <div class="custom-pointer"></div>
+      <img :src="mapUrl" alt="Интерактивная карта" class="map-image" @load="onLoad" @error="onError" />
+      <div class="local"></div>
     </div>
     <div v-if="error" class="error">Ошибка загрузки</div>
   </div>
 </template>
 
 <script setup>
+import { useMediaQuery } from '@vueuse/core'
 const props = defineProps({
   initialCoords: {
+    type: Array,
+    default: () => [82.938917, 55.059198]
+  },
+  mobileCoords: {
+    type: Array,
+    default: () => [82.946700, 55.063047]
+  },
+  pointCoords: {
     type: Array,
     default: () => [82.938917, 55.059198]
   },
@@ -43,11 +46,12 @@ const props = defineProps({
   }
 })
 
-
 const zoom = ref(props.initialZoom)
 const coords = ref(props.initialCoords)
+const point = ref(props.pointCoords)
 const loading = ref(true)
 const error = ref(false)
+
 
 const mapUrl = computed(() => {
   const params = new URLSearchParams({
@@ -55,9 +59,7 @@ const mapUrl = computed(() => {
     ll: coords.value.join(','),
     z: zoom.value.toString(),
     size: `${props.width},${props.height}`,
-    // size: `${props.width},${props.height}`,
-    // pt: `${coords.value.join(',')},pm2rdl`,
-    lang: 'ru_RU'
+    pt: `${point.value.join(',')},vkbkm`,
   })
   const apiKey = process.env.NUXT_PUBLIC_YANDEX_STATIC_API_KEY
   if (apiKey) {
@@ -106,24 +108,26 @@ onUnmounted(() => {
   position: relative;
   display: inline-block;
 }
+
 .map-container {
   width: 850px;
   height: 599px;
 }
+
 img {
-    padding: 0;
+  padding: 0;
 }
-.custom-pointer{
-    background: url(/public/images/address1.svg) no-repeat top;
-    background-size: contain;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-5%, -100%);
-    width: 384px;
-    height: 82px;
-    z-index:10;
+
+.local {
+  background: url(/public/images/address1.svg) no-repeat top;
+  background-size: contain;
+  position: absolute;
+  right: 52px;
+  bottom: 20px;
+  width: 384px;
+  height: 82px;
 }
+
 .map-controls {
   position: absolute;
   top: 20px;
@@ -176,7 +180,7 @@ img {
   border-radius: 12px;
   width: 100%;
   height: 100%;
-  object-fit: cover; 
+  object-fit: cover;
 }
 
 .error {
@@ -195,21 +199,43 @@ img {
   background: rgba(255, 235, 235, 0.95);
 }
 
+@media (max-width:1280px) {
+   .map-container{
+        width: 100%
+    }
+}
+
+@media (max-width: 1024px) {
+    .local {
+      width: 280px;
+      height: 66px;
+      margin: auto;
+      left: 50%;
+      transform: translate(-50%, 0);
+  }
+}
+
 @media (max-width: 768px) {
   .map-controls {
     top: 10px;
     right: 10px;
     padding: 8px;
   }
-  
+
   .zoom-btn {
     width: 35px;
     height: 35px;
     font-size: 18px;
   }
-  
+
   .zoom-level {
     font-size: 12px;
+  }
+
+  @media (max-width: 380px) {
+     .local {
+        height: 62px;
+    }
   }
 }
 </style>

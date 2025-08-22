@@ -31,11 +31,41 @@ a {
     color: var(--based);
 }
 .address {
-    background: url(/public/images/local.svg) no-repeat;
+    background: url(/public/images/local.svg) no-repeat left center;
     width: 226px;
-    padding-left: 50px;
+    padding: 7px 0 7px  50px;
 }
 .number {
     margin: 0;
+}
+
+@media(max-width:1280px){
+    .contacts {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding-bottom: 40px;
+    }
+}
+
+@media (max-width: 640px) {
+    .flex {
+            flex-wrap: wrap;
+        }
+}
+
+@media (max-width: 380px) {
+    .flex {
+        gap: 40px;
+    }
+    .contacts {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+   
 }
 </style>
