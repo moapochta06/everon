@@ -2,7 +2,6 @@
     <div class="container">
         <h2>Услуги</h2>
         <ul>
-            
             <li>
                 <h3>Консультация</h3>
                 <p>Профессиональная консультация по выбору оборудования</p>
@@ -20,10 +19,25 @@
                 <p>Разработка технических решений</p>
             </li>
         </ul>
-        <QuestionBtn />
+        <div class="btn">
+            <QuestionBtn />
+        </div>
     </div>
+
+    <div class="banner">
+        <Banner />
+    </div>
+
+    <CallbackForm />
 </template>
 <style scoped>
+.container {
+    padding-bottom: 40px;
+}
+.btn {
+    margin:0 auto;
+    width: 243px;
+}
 ul {
     display: flex;
     margin: 50px 0 40px;
@@ -60,18 +74,43 @@ li:nth-child(3) h3{
 li:nth-child(4) h3{
     background: url(/public/images/services/designing.svg) no-repeat 18px top;
 }
+.banner {
+    padding-top: 40px;
+    background: var(--bg);
+    padding-bottom: 60px;
+}
 
 @media (max-width: 1280px) {
+    .banner {
+        padding-top: 28px;
+    }
     ul {
         margin: 50px auto 40px;
     }
 }
 @media (max-width: 768px) {
+
+.container {
+    padding-bottom: 40px;
+}
     ul li {
     width: 320px;
 }
-li:first-child h3,li:nth-child(2) h3, li:nth-child(3) h3, li:nth-child(4) h3{
+li:first-child h3,
+li:nth-child(2) h3,
+li:nth-child(3) h3,
+li:nth-child(4) h3{
     background-position: 50px top 
+}
+
+}
+@media (max-width:640px) {
+    .btn {
+    width: 100%;
+    margin: 0;
+    }
+    .banner {
+    padding-bottom: 0px;
 }
 }
 </style>

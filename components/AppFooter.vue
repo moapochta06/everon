@@ -80,7 +80,6 @@
 
 <style scoped>
 .footer {
-    margin-top: -2px;
     background: var(--secondary);
 }
 
@@ -253,7 +252,6 @@ p {
     }
     p {
         margin-top: 46px;
-        /* text-align: center; */
     }
 }
 
@@ -261,10 +259,6 @@ p {
     .wrapper {
         width: 70vw;
     }
-    /* .footer-bottom {
-        margin-top: 20px;
-        flex-direction: column-reverse;
-    } */
 }
 
 @media (max-width:380px) {
@@ -281,7 +275,6 @@ p {
         padding-top: 30px;
         gap: 0;
     }
-    
     .wrapper div:first-child {
         display: flex;
         flex-direction: column;

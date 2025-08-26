@@ -19,6 +19,9 @@
                 обеспечивают широчайшие возможности для исследований и внедрения инновационных решений, отвечающих
                 растущим требованиям современных энергопотребителей.
             </div>
+            <div class="mob-sidebar">
+                <AppAside />
+            </div>
             <h3>Направления деятельности</h3>
             <h4>Продукция</h4>
             <ul>
@@ -70,7 +73,7 @@
                 истории всей отечественной электротехники.
             </p>
             <div class="contact">
-                <img src="/public/images/manager.png" alt="mamager">
+                <img src="/public/images/manager.png" alt="mamager" class="manager">
                 <div class="">
                     <h2>Менеджер отдела продаж</h2>
                     <h3>Кузнецова Ирина Геннадиевна</h3>
@@ -83,7 +86,9 @@
                 </div>
             </div>
         </div>
-        <div class="sidebar">;owj</div>
+        <div class="sidebar">
+            <AppAside />
+        </div>
 
     </div>
     <Gallery />
@@ -140,7 +145,7 @@ ul:last-of-type li span {
     background: var(--primary);
     border-radius: 100px;
     padding-left: 5px;
-    padding-top: 3px;
+    padding-top: 1px;
     font-size: 10px;
     width: 16px;
     height: 16px;
@@ -196,6 +201,9 @@ ul:last-of-type li span {
     text-transform: none;
     padding: 50px 0 9px;
 }
+.manager {
+    width: 40%;
+}
 .contact p {
     max-width: 544px;
     padding-bottom: 10px;
@@ -206,45 +214,63 @@ ul:last-of-type li span {
 .sidebar {
     margin-left: 25px;
 }
-
+.mob-sidebar {
+    display: none;
+}
 
 @media(max-width: 1024px) {
     .main-content {
         width: 100%;
     }
     .contact h3 {
-    padding: 44px 0 9px;
-    }
-    .contact {
-        flex-wrap: wrap;
+        padding: 44px 0 9px;
     }
     .sidebar {
         display: none;
+        margin-left: 0;
+    }
+    .mob-sidebar {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        width: 80vw;
     }
 }
 
+@media (max-width: 768px) {
+     .mob-sidebar {
+        margin-top: 40px;
+        width: 100% ;
+        gap: 0;
+    }
+}
 
 @media(max-width: 640px) {
     ul {
         flex-wrap: wrap;
     }
-    .sidebar {
-        display: none;
-    }
     .main-content {
+        width: 100%;
+    }
+    .manager {
         width: 100%;
     }
 }
 
 @media (max-width: 380px){
-        .contact {
-            gap: 0;
-        }
-        img {
-            margin-bottom: 20px;
-        }
-        .contact h3 {
-            padding-top: 20px;
+    .contact {
+        gap: 0;
     }
+    img {
+        margin-bottom: 20px;
+    }
+    .contact h3 {
+        padding-top: 20px;
+    }
+    .mob-sidebar {
+        gap: 0;
+    }
+
+    
 }
 </style>

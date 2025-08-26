@@ -173,7 +173,7 @@ p {
     display: flex;
     gap: 20px;
     z-index: 1001;
-    margin: 24px 0;
+    margin: 23px 0;
 }
 input {
     width: 277px;
@@ -233,9 +233,8 @@ button {
     margin-top: -100px;
     display: block;
     background: url(/public/images/mob-operator.png) no-repeat center center;
-    /* width: 337px; */
     width: 100%;
-    height: 438px;
+    height: 436px;
 }
 }
 

@@ -1,5 +1,5 @@
 :root {
-    --font-sans: 'LibreFranklin', sans-serif;
+    --font-sans: 'Open-Sans', sans-serif;
     --text-color: #fff;
     --base: #23263B;
     --bg: #EDEFF5;
@@ -43,6 +43,10 @@ a {
     color: var(--text-color);
 } 
 
+button {
+    cursor: pointer;
+}
+
 input,button,textarea {
     border: none;
     outline: none;
@@ -82,7 +86,6 @@ input::placeholder {
     display: none;
 }
 .menu {
-    border-top: 1px solid #fff;
     margin-bottom: 40px;
 }
 
@@ -125,7 +128,7 @@ input::placeholder {
 
 img {
     margin: 0;
-    padding: 0 0 20px;
+    border-radius: 10px;
 }
 
 .number {
@@ -172,6 +175,9 @@ img {
         flex-wrap: wrap;
         padding: 41px 40px;
     }
+    .contact {
+        flex-direction: column;
+    }
 }
 
 @media(max-width:1024px){
@@ -183,9 +189,6 @@ img {
         padding: 41px 40px;
         flex-direction: column;
         width: 554px;
-    }
-    img {
-        margin: auto;
     }
     .nav {
         padding: 20px 40px;
@@ -206,13 +209,13 @@ img {
         width: 320px;
         flex-wrap: wrap;
         padding: 0;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
     .mob-img {
         width: 277px;
     }
     img {
-        margin:0 auto 30px;
+        /* margin:0 auto 30px; */
         padding: 0;
         width: 100%;
     }
@@ -321,10 +324,5 @@ img {
 }
 
 @media(max-width:360px){
-    .container {
-        /* max-width: 320px; */
-    }
-     .mobile-header {
-        padding: 15px 0;
-     }
+   
 }
