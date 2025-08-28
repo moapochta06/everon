@@ -156,7 +156,7 @@ p {
 .news{
     border-radius: 10px;
     font-size: 14px;
-    margin-top: 20px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

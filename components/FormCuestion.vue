@@ -58,6 +58,7 @@ const form = reactive({
     phone: '',
     email: '',
     message: '',
+    source_id: 1,
     agreedToPrivacy: false,
     agreedToNewsletter: false
 });
@@ -79,6 +80,7 @@ const validateFormLocal = () => {
 
 // Отправка формы
 const submitForm = async () => {
+    console.log('Отправляемые данные:', JSON.stringify(form, null, 2))
     if (!validateFormLocal()) {
         return;
     }
@@ -86,9 +88,14 @@ const submitForm = async () => {
     isSubmitting.value = true;
 
     try {
-        const { data, error } = await useFetch('/api/feedback', {
+        const { data, error } = await useFetch('/api/leads', {
             method: 'POST',
-            body: form
+            body: {
+                phone: form.phone,
+                email: form.email,
+                message: form.message,
+                sourceId: form.source_id, 
+            }
         });
 
         if (error.value) {
@@ -97,13 +104,13 @@ const submitForm = async () => {
 
         submitSuccess.value = true;
 
-        Object.assign(form, {
-            phone: '',
-            email: '',
-            message: '',
-            agreedToPrivacy: false,
-            agreedToNewsletter: false
-        });
+        // Сброс формы
+        form.phone = '';
+        form.email = '';
+        form.message = '';
+        form.agreedToPrivacy = false;
+        form.agreedToNewsletter = false;
+        // source_id остается без изменений
 
         errors.value = {};
 
@@ -130,7 +137,7 @@ h2 {
     text-align: center;
     font-size: 24px;
     width: 237px;
-    margin:20px auto 15px;
+    margin: 20px auto 15px;
 }
 
 p {
@@ -148,8 +155,8 @@ form {
     width: 100%;
 }
 
-.form-group + .form-group {
-  margin-top: 10px;
+.form-group+.form-group {
+    margin-top: 10px;
 }
 
 label {
@@ -297,7 +304,7 @@ button:disabled {
 }
 
 @media (max-width:1280px) {
-   .form-container {
+    .form-container {
         margin: auto;
         min-width: 277px;
     }
@@ -313,6 +320,7 @@ button:disabled {
     h2 {
         margin-top: 32px;
     }
+
     .form-container {
         width: 100%;
     }

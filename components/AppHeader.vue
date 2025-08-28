@@ -101,5 +101,8 @@ onMounted(() => {
         margin: 0;
         padding: 0 0 0 26px;
     }
+    img {
+        margin:0 auto 30px;
+    }
 } 
 </style>

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="main-content">
             <h2>О нашей компании</h2>
-            <div>
+            <div class="description">
                 <p>
                     Группа компаний EverON на сегодняшний день является лидером среди российских производителей и
                     поставщиков систем электропитания.
@@ -97,13 +97,16 @@
 </template>
 
 <style scoped>
-
 .container {
     display: flex;
 }
 
 .main-content {
     width: 81%;
+}
+
+.description {
+    margin-bottom: 40px;
 }
 
 p {
@@ -255,6 +258,7 @@ ul:last-of-type li span {
     .manager {
         width: 100%;
     }
+
 }
 
 @media (max-width: 380px){
