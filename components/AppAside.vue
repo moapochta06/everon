@@ -60,7 +60,9 @@ import Arrows from './Arrows.vue';
 
 let formData = ref({
   name: '',
-  phone: ''
+  phone: '',
+  email: '', 
+  source_id: 3,
 });
 
 let errors = ref({
@@ -110,9 +112,13 @@ const handleSubmit = async () => {
   message.value = null;
 
   try {
-    const { data, error } = await useFetch('/api/callback', {
+    const { data, error } = await useFetch('/api/leads', {
       method: 'POST',
-      body: formData.value
+      body: {
+          name: formData.value.name,
+          phone: formData.value.phone,
+          sourceId: formData.value.source_id
+      }
     });
 
     if (error.value) {
@@ -123,8 +129,11 @@ const handleSubmit = async () => {
       type: 'success',
       text: 'Спасибо! Мы скоро вам перезвоним.'
     };
+   
+    formData.value.name = '';
+    formData.value.phone = '';
+    formData.value.email = '';
     
-    formData.value = { name: '', phone: '' };
   } catch (err) {
     console.error('Ошибка отправки:', err);
     message.value = {

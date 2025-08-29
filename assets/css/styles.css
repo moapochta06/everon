@@ -166,6 +166,16 @@ img {
         margin-top: 10px;
     }
 
+.success-message {
+    background: #ecfdf5;
+    color: #065f46;
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+    border: 1px solid #a7f3d0;
+}
+
 @media(max-width:1280px){
     .container {
         padding-left: 40px;

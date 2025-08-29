@@ -6,12 +6,12 @@ import { eq } from 'drizzle-orm'
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
-  if (!body.phone || !body.email || !body.sourceId) {
-    throw createError({
-      statusCode: 400,
-      message: 'Требуются phone, email и sourceId'
-    })
-  }
+  // if (!body.phone || !body.sourceId) {
+  //   throw createError({
+  //     statusCode: 400,
+  //     message: 'Требуются phone, email и sourceId'
+  //   })
+  // }
 
   try {
     // Используем транзакцию
@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
           sourceId: body.sourceId,
           name: body.name || null,
           phone: body.phone,
-          email: body.email,
+          email: body.email || null,
         })
         .execute()
 

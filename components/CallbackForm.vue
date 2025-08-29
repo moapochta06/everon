@@ -32,8 +32,8 @@
         Заказать обратный звонок
         </button>
 
-        <div v-if="message" :class="['message', message.type]">
-        {{ message.text }}
+        <div v-if="message" :class="['message', message.type, message.type === 'success' ? 'success-message' : '']">
+                {{ message.text }}
         </div>
         </form>
     </div>
@@ -47,7 +47,8 @@ import { ref } from 'vue';
 
 let formData = ref({
   name: '',
-  phone: ''
+  phone: '',
+  source_id: 3,
 });
 
 let errors = ref({
@@ -97,9 +98,13 @@ const handleSubmit = async () => {
   message.value = null;
 
   try {
-    const { data, error } = await useFetch('/api/callback', {
+    const { data, error } = await useFetch('/api/leads', {
       method: 'POST',
-      body: formData.value
+      body: {
+          name: formData.value.name,
+          phone: formData.value.phone,
+          sourceId: formData.value.source_id
+      }
     });
 
     if (error.value) {
@@ -189,6 +194,13 @@ button {
     border-radius: 50px;
     height: 50px;
     width: 277px;
+}
+
+.message.success {
+  position: absolute;
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
 }
 
 .input-error::placeholder {

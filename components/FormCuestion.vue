@@ -80,7 +80,6 @@ const validateFormLocal = () => {
 
 // Отправка формы
 const submitForm = async () => {
-    console.log('Отправляемые данные:', JSON.stringify(form, null, 2))
     if (!validateFormLocal()) {
         return;
     }
@@ -104,13 +103,11 @@ const submitForm = async () => {
 
         submitSuccess.value = true;
 
-        // Сброс формы
         form.phone = '';
         form.email = '';
         form.message = '';
         form.agreedToPrivacy = false;
         form.agreedToNewsletter = false;
-        // source_id остается без изменений
 
         errors.value = {};
 
@@ -249,17 +246,6 @@ button:disabled {
     background: #9ca3af;
     cursor: not-allowed;
 }
-
-.success-message {
-    background: #ecfdf5;
-    color: #065f46;
-    padding: 16px;
-    border-radius: 8px;
-    margin-top: 20px;
-    text-align: center;
-    border: 1px solid #a7f3d0;
-}
-
 
 .checkbox-item {
     display: block;

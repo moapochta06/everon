@@ -1,6 +1,8 @@
 import { defineConfig } from 'drizzle-kit'
-
+import { config } from 'dotenv'
 const password = process.env.DB_PASSWORD ?? ''
+
+config({ path: '.env' })
 
 export default defineConfig({
   dialect: 'mysql',
