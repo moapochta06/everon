@@ -25,7 +25,7 @@ export const leads = mysqlTable('leads', {
     .references(() => leadSources.id), 
   name: varchar('name', { length: 100 }), 
   phone: varchar('phone', { length: 20 }).notNull(),
-  email: varchar('email', { length: 100 }).notNull(),
+  email: varchar('email', { length: 100 }),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 })
 
