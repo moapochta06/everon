@@ -13,6 +13,9 @@ export default defineNuxtConfig({
     dbPassword: process.env.DB_PASSWORD,
     dbName: process.env.DB_NAME,
     jwtSecret: process.env.JWT_SECRET,
+    public: {
+      yandexStaticApiKey: process.env.NUXT_PUBLIC_YANDEX_STATIC_API_KEY,
+    }
   },
   typescript: {
     tsConfig: {

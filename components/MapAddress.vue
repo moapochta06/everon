@@ -10,7 +10,23 @@
       <span class="zoom-level">Масштаб: {{ zoom }}</span>
     </div>
     <div class="map-container">
-      <img :src="mapUrl" alt="Интерактивная карта" class="map-image" @load="onLoad" @error="onError" />
+      <img 
+        :src="mapUrl" 
+        alt="Интерактивная карта" 
+        class="map-image" 
+        :class="{ 'grabbing': isDragging }"
+        @load="onLoad" 
+        @error="onError"
+        @mousedown="onMouseDown"
+        @mousemove="onMouseMove"
+        @mouseup="onMouseUp"
+        @mouseleave="onMouseUp"
+        @touchstart="onTouchStart"
+        @touchmove="onTouchMove"
+        @touchend="onTouchEnd"
+        @touchcancel="onTouchEnd"
+        @dragstart.prevent
+      />
       <div class="local"></div>
     </div>
     <div v-if="error" class="error">Ошибка загрузки</div>
@@ -18,7 +34,11 @@
 </template>
 
 <script setup>
-import { useMediaQuery } from '@vueuse/core'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+
+const runtimeConfig = useRuntimeConfig()
+const apiKey = runtimeConfig.public.yandexStaticApiKey
+
 const props = defineProps({
   initialCoords: {
     type: Array,
@@ -52,6 +72,11 @@ const point = ref(props.pointCoords)
 const loading = ref(true)
 const error = ref(false)
 
+// Переменные для перемещения
+const isDragging = ref(false)
+const startX = ref(0)
+const startY = ref(0)
+const startCoords = ref([0, 0])
 
 const mapUrl = computed(() => {
   const params = new URLSearchParams({
@@ -61,13 +86,70 @@ const mapUrl = computed(() => {
     size: `${props.width},${props.height}`,
     pt: `${point.value.join(',')},vkbkm`,
   })
-  const apiKey = process.env.NUXT_PUBLIC_YANDEX_STATIC_API_KEY
   if (apiKey) {
     params.append('apikey', apiKey)
     return `https://static-maps.yandex.ru/v1?${params.toString()}`
   }
   return `https://static-maps.yandex.ru/1.x/?${params.toString()}`
 })
+
+// Функции для перемещения карты
+const startDrag = (clientX, clientY) => {
+  isDragging.value = true
+  startX.value = clientX
+  startY.value = clientY
+  startCoords.value = [...coords.value]
+}
+
+const duringDrag = (clientX, clientY) => {
+  if (!isDragging.value) return
+  
+  const deltaX = clientX - startX.value
+  const deltaY = clientY - startY.value
+  
+  const sensitivity = 0.00001 * (18 - zoom.value)
+
+  coords.value = [
+    startCoords.value[0] - deltaX * sensitivity, 
+    startCoords.value[1] + deltaY * sensitivity 
+  ]
+}
+
+const endDrag = () => {
+  isDragging.value = false
+}
+
+// Обработчики для мыши
+const onMouseDown = (event) => {
+  startDrag(event.clientX, event.clientY)
+}
+
+const onMouseMove = (event) => {
+  duringDrag(event.clientX, event.clientY)
+}
+
+const onMouseUp = () => {
+  endDrag()
+}
+
+// Обработчики для touch-устройств
+const onTouchStart = (event) => {
+  if (event.touches.length === 1) {
+    startDrag(event.touches[0].clientX, event.touches[0].clientY)
+  }
+}
+
+const onTouchMove = (event) => {
+  if (event.touches.length === 1) {
+    duringDrag(event.touches[0].clientX, event.touches[0].clientY)
+    event.preventDefault()
+  }
+}
+
+const onTouchEnd = () => {
+  endDrag()
+}
+
 
 const zoomIn = () => {
   if (zoom.value < 18) {
@@ -83,11 +165,15 @@ const zoomOut = () => {
   }
 }
 
+const onLoad = () => {
+  loading.value = false
+  error.value = false
+}
+
 const onError = () => {
   error.value = true
   loading.value = false
 }
-
 
 const handleKeyPress = (event) => {
   if (event.key === '+' || event.key === '=') zoomIn()
@@ -111,7 +197,7 @@ onUnmounted(() => {
 
 .map-container {
   width: 850px;
-  height: 599px;
+  height: 629px;
 }
 
 img {
@@ -181,6 +267,9 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  cursor: grab;
+  touch-action: none; 
+  user-select: none;
 }
 
 .error {

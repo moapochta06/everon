@@ -13,7 +13,9 @@
                 </div>
             </div>
             <div class="mobile-menu" id="mobileMenu">
-                <img src="/public/images/logo.svg" class="mob-img" alt="logo">
+                <a href="/">
+                    <img src="/public/images/logo.svg" class="mob-img" alt="logo">
+                </a>
                 <nav class="nav mob-nav">
                     <a href="/catalog">Каталог</a>
                     <a href="/service">Услуги</a>
@@ -38,7 +40,9 @@
                 </div>
             </div>
             <div class="container head">
-                <img src="/public/images/logo.svg" alt="logo">
+                <a href="/">
+                    <img src="/public/images/logo.svg" alt="logo">
+                </a>
                 <div class="">
                     <form class="search-form" action="#">
                         <input class="search-inp" type="text" placeholder="Поиск товара">

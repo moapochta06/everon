@@ -150,7 +150,7 @@ h2 {
 }
 
 p {
-    width: 240px;
+    width: 242px;
     text-align: center;
     font-size: 14px;
     margin: 0 auto 15px;
