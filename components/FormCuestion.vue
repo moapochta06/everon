@@ -1,5 +1,5 @@
 <template>
-    <div class="form-container">
+    <div class="form-container" :class="{ 'modal-version': isModal }">
         <h2>Задайте вопрос специалисту</h2>
         <p>И наш менеджер свяжется с вами.&nbsp;&nbsp; Заполните форму и задайте вопрос</p>
         <form @submit.prevent="submitForm">
@@ -121,6 +121,13 @@ const submitForm = async () => {
         isSubmitting.value = false;
     }
 };
+
+defineProps({
+    isModal: {
+        type: Boolean,
+        default: false
+    }
+});
 </script>
 
 <style scoped>
@@ -130,11 +137,16 @@ const submitForm = async () => {
     border-radius: 10px;
 }
 
+.form-container.modal-version {
+    width: 320px; 
+}
+
 h2 {
+    margin: auto;
     text-align: center;
     font-size: 24px;
     width: 237px;
-    margin: 20px auto 15px;
+    padding: 20px 0 15px;
 }
 
 p {
@@ -303,12 +315,11 @@ button:disabled {
 }
 
 @media (max-width: 380px) {
-    h2 {
-        margin-top: 32px;
-    }
-
     .form-container {
         width: 100%;
+    }
+    .form-container.modal-version {
+        width: 100%; 
     }
 }
 </style>

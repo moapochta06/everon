@@ -6,7 +6,7 @@
                 <img src="/public/images/banner.png" alt="sources" class="none">
                 <p>Продажа и ввод в эксплуатацию под ключ</p>
                 <div class="btn">
-                    <QuestionBtn />
+                    <QuestionButtonModal />
                 </div>
                 <div class="dots">
                     <span></span>
@@ -27,6 +27,14 @@
             </div>
         </div>
 </template>
+<script setup>
+import { ref } from 'vue';
+const isModalOpen = ref(false);
+
+const openQuestionModal = () => {
+  isModalOpen.value = true;
+};
+</script>
 <style scoped>
 .flex {
     position: relative;
@@ -43,7 +51,7 @@ p {
     line-height: 36px;
     margin-bottom: 40px;
 }
-button {
+.btn {
     width: 243px;
 }
 img {
@@ -134,7 +142,7 @@ img {
     .dots {
     bottom: 82px;
     }
-    button {
+    .btn {
         margin: auto;
     }
 }
@@ -149,7 +157,7 @@ img {
         height: 320px;
 
     }
-    button {
+    .btn {
         width: 100%;
     }
 }

@@ -20,7 +20,7 @@
             </li>
         </ul>
         <div class="btn">
-            <QuestionBtn />
+            <QuestionButtonModal />
         </div>
     </div>
 
