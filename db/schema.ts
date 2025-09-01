@@ -1,13 +1,14 @@
 import { mysqlTable, int,  text, varchar, timestamp, primaryKey } from 'drizzle-orm/mysql-core'
-
+ 
 export const users = mysqlTable('users', {
   id: int('id').autoincrement().primaryKey(),
   username: varchar('username', { length: 50 }).notNull().unique(),
-  email: varchar('email', { length: 100 }).notNull().unique(),
   password: varchar('password', { length: 255 }).notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
-  updated_at: timestamp('updated_at').defaultNow().onUpdateNow().notNull(), 
+  updatedAt: timestamp('updated_at').defaultNow().notNull(), 
 })
+
+export type InsertUser = typeof users.$inferInsert;
 
 // Таблица: источники заявок
 export const leadSources = mysqlTable('lead_sources', {
@@ -28,6 +29,23 @@ export const leads = mysqlTable('leads', {
   email: varchar('email', { length: 100 }),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 })
+
+// Группы товаров
+export const productGroups = mysqlTable('product_groups', {
+  id: int('id').autoincrement().primaryKey(),
+  name: varchar('name', { length: 255 }).notNull(),
+  slug: varchar('slug', { length: 255 }).notNull(),
+  imageUrl: varchar('image_url', { length: 500 }),
+  seoTitle: varchar('seo_title', { length: 255 }),
+  seoDescription: text('seo_description'),
+  description: text('description'),
+  parentId: int('parent_id'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+});
+
+//тип для вставки группы товаров
+export type InsertProductGroup = typeof productGroups.$inferInsert;
 
 
 export type Lead = typeof leads.$inferSelect
