@@ -44,6 +44,7 @@
 
 <script setup>
 import { ref } from 'vue';
+const { formatPhone } = usePhoneFormatter();
 
 let formData = ref({
   name: '',
@@ -58,6 +59,12 @@ let errors = ref({
 
 const isSubmitting = ref(false);
 const message = ref(null);
+let messageTimer = null;
+
+watch(message, (newMsg) => {
+  clearTimeout(messageTimer);
+  if (newMsg) messageTimer = setTimeout(() => message.value = null, 4000);
+});
 
 const validateField = (field) => {
   errors.value[field] = '';
@@ -98,25 +105,29 @@ const handleSubmit = async () => {
   message.value = null;
 
   try {
-    const { data, error } = await useFetch('/api/leads', {
+    const cleanPhone = formData.value.phone.replace(/\D/g, '');
+    
+    const response = await $fetch('/api/leads', {
       method: 'POST',
-      body: {
-          name: formData.value.name,
-          phone: formData.value.phone,
-          sourceId: formData.value.source_id
+      body: JSON.stringify({
+        name: formData.value.name,
+        phone: cleanPhone,
+        sourceId: formData.value.source_id
+      }),
+      headers: {
+        'Content-Type': 'application/json'
       }
     });
-
-    if (error.value) {
-      throw error.value;
-    }
 
     message.value = {
       type: 'success',
       text: 'Спасибо! Мы скоро вам перезвоним.'
     };
+   
+    formData.value.name = '';
+    formData.value.phone = '';
+    formData.value.email = '';
     
-    formData.value = { name: '', phone: '' };
   } catch (err) {
     console.error('Ошибка отправки:', err);
     message.value = {

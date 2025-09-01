@@ -5,7 +5,6 @@ export default defineNitroPlugin(async (nitroApp) => {
 
     // Проверка соединения
     try {
-        // Можно выполнить простой запрос для проверки соединения
         const result = await db.execute('SELECT 1 as test')
         console.log('Database connection test:', result[0])
     } catch (error) {

@@ -12,7 +12,6 @@ export default defineEventHandler(async (event) => {
       .execute()
 
     return { 
-      success: true, 
       leads: allLeads,
       count: allLeads.length
     }

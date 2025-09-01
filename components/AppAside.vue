@@ -42,6 +42,7 @@
             id="phone"
             :placeholder="errors.phone ? errors.phone : 'Телефон'"
             @blur="validateField('phone')"
+            @input="handlePhoneInput"
             :class="{ 'input-error': errors.phone }"
         />
         <button type="submit" :disabled="isSubmitting">
@@ -56,7 +57,7 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import Arrows from './Arrows.vue';
+const { formatPhone } = usePhoneFormatter();
 
 let formData = ref({
   name: '',
@@ -72,6 +73,16 @@ let errors = ref({
 
 const isSubmitting = ref(false);
 const message = ref(null);
+let messageTimer = null;
+
+watch(message, (newMsg) => {
+  clearTimeout(messageTimer);
+  if (newMsg) messageTimer = setTimeout(() => message.value = null, 4000);
+});
+
+const handlePhoneInput = (event) => {
+  formData.value.phone = formatPhone(event.target.value);
+};
 
 const validateField = (field) => {
   errors.value[field] = '';
@@ -82,15 +93,18 @@ const validateField = (field) => {
   }
 
   if (field === 'phone') {
-    if (!formData.value.phone.trim()) {
-      errors.value.phone = 'Укажите телефон';
-      return false;
-    }
-    if (!/^[\d\s()+ -]+$/.test(formData.value.phone)) {
-      errors.value.phone = 'Некорректный номер';
-      return false;
-    }
+  const cleanPhone = formData.value.phone.replace(/\D/g, '');
+  
+  if (!cleanPhone) {
+    errors.value.phone = 'Укажите телефон';
+    return false;
   }
+  
+  if (cleanPhone.length < 11) {
+    errors.value.phone = 'Некорректный номер';
+    return false;
+  }
+}
   
   return true;
 };
@@ -112,18 +126,19 @@ const handleSubmit = async () => {
   message.value = null;
 
   try {
-    const { data, error } = await useFetch('/api/leads', {
+    const cleanPhone = formData.value.phone.replace(/\D/g, '');
+    
+    const response = await $fetch('/api/leads', {
       method: 'POST',
-      body: {
-          name: formData.value.name,
-          phone: formData.value.phone,
-          sourceId: formData.value.source_id
+      body: JSON.stringify({
+        name: formData.value.name,
+        phone: cleanPhone,
+        sourceId: formData.value.source_id
+      }),
+      headers: {
+        'Content-Type': 'application/json'
       }
     });
-
-    if (error.value) {
-      throw error.value;
-    }
 
     message.value = {
       type: 'success',
@@ -243,7 +258,7 @@ button {
         position: relative;
     }
     .news:nth-child(2) {
-        margin-bottom: 80px;
+        margin-bottom: 100px;
     }
     .dots_arrows {
         left: 0;
@@ -251,7 +266,7 @@ button {
         display: flex;
         justify-content: space-between;
         position: absolute;
-        bottom: -65px;
+        bottom: -60px;
         align-items: center;
     }
 }
