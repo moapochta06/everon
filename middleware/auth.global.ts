@@ -1,5 +1,4 @@
 export default defineNuxtRouteMiddleware((to, from) => {
-  // Проверяем аутентификацию только на клиентской стороне
   if (process.client) {
     const auth = useAuth();
     
@@ -13,8 +12,6 @@ export default defineNuxtRouteMiddleware((to, from) => {
       return navigateTo('/admin');
     }
   } else {
-    // На серверной стороне проверяем через cookies
-    // Используем альтернативный способ получения cookies
     const token = useCookie('auth-token').value;
     
     if (to.path.startsWith('/admin') && to.path !== '/admin/login') {

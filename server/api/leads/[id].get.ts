@@ -34,7 +34,6 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    // Ищем лид в базе
     const lead = await db.select()
       .from(leads)
       .where(eq(leads.id, leadId))

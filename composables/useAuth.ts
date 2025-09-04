@@ -56,8 +56,6 @@ export const useAuth = () => {
     } catch (error) {
       console.error('Logout error:', error);
     }
-    
-    await navigateTo('/admin/login');
   };
 
   // Инициализируем при создании

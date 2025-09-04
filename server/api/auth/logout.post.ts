@@ -1,6 +1,8 @@
 export default defineEventHandler(async (event) => {
-  // Удаляем cookie
-  deleteCookie(event, 'auth-token');
+  deleteCookie(event, 'auth-token', {
+    path: '/',
+    httpOnly: true
+  });
   
   return {
     success: true,

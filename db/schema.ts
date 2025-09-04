@@ -44,6 +44,23 @@ export const productGroups = mysqlTable('product_groups', {
   updatedAt: timestamp('updated_at').defaultNow(),
 });
 
+// Таблица: товары
+export const products = mysqlTable('products', {
+  id: int('id').autoincrement().primaryKey(),
+  name: varchar('name', { length: 255 }).notNull(),
+  slug: varchar('slug', { length: 255 }).notNull().unique(),
+  price: int('price').notNull(),
+  mainImage: varchar('main_image', { length: 500 }),
+  gallery: varchar('gallery', { length: 2000 }),
+  seoTitle: varchar('seo_title', { length: 255 }),
+  seoDescription: text('seo_description'),
+  description: text('description'),
+  categoryId: int('category_id')
+    .references(() => productGroups.id),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+});
+
 //тип для вставки группы товаров
 export type InsertProductGroup = typeof productGroups.$inferInsert;
 

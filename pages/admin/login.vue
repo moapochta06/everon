@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="container">
     <div>
-      <h2>
+      <h3>
         Вход в панель управления
-      </h2>
+      </h3>
     </div>
     <form @submit.prevent="handleLogin">
       <div>
@@ -13,7 +13,7 @@
           v-model="username"
           type="text"
           required
-          placeholder="Логин"
+          placeholder="Введите логин"
         />
       </div>
       <div>
@@ -23,17 +23,15 @@
           v-model="password"
           type="password"
           required
-          placeholder="Пароль"
+          placeholder="Введите пароль"
         />
       </div>
-      <div>
         <button
           type="submit"
           :disabled="loading"
         >
           {{ loading ? 'Вход...' : 'Войти' }}
         </button>
-      </div>
       <div v-if="error">
         {{ error }}
       </div>
@@ -42,6 +40,9 @@
 </template>
 
 <script setup>
+definePageMeta({
+  layout: 'auth' 
+})
 const username = ref('');
 const password = ref('');
 const error = ref('');
@@ -64,3 +65,33 @@ const handleLogin = async () => {
   loading.value = false;
 };
 </script>
+<style scoped>
+.container{
+  margin:10% auto 0;
+  width: fit-content;
+}
+h3 {
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+input {
+  display: block;
+  height: 40px;
+  border-radius: 40px;
+  width: 100%;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: #E8F3FF;
+}
+
+button {
+  width: 100%;
+  background: var(--secondary);
+  color:var(--text-color);
+  height: 40px;
+  border-radius: 40px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+</style>

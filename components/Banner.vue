@@ -8,22 +8,22 @@
                 <div class="btn">
                     <QuestionButtonModal />
                 </div>
-                <div class="dots">
+                <!-- <div class="dots">
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </div> -->
                 <div class="arrows none">
                     <div></div>
                     <div></div>
                 </div>
                 </div>
                 <img src="/public/images/banner.png" alt="sources" class="img">
-                <div class="arrows  desktop-arrows">
+                <!-- <div class="arrows  desktop-arrows">
                     <div></div>
                     <div></div>
-                </div>
+                </div> -->
             </div>
         </div>
 </template>
