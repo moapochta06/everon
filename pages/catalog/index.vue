@@ -8,7 +8,7 @@
       <div v-else>
         <ul class="categories">
           <li v-for="category in categories" :key="category.id">
-            <NuxtLink :to="`/categories/${category.slug}`">
+            <NuxtLink :to="`catalog/${category.slug}`">
               <img 
                 :src="category.imageUrl || '/images/placeholder.jpg'" 
                 :alt="category.name"
@@ -32,10 +32,6 @@ const handleImageError = (event) => {
 </script>
 <style scoped>
 .catalog-page {
-    padding: 40px 0 49px;
-    background: var(--bg);
-}
-.catalog {
     padding: 40px 0 49px;
     background: var(--bg);
 }

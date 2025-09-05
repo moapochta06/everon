@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
         <div class="container">
             <div class=" flex">
                 <div class="text-content">
@@ -8,39 +8,73 @@
                 <div class="btn">
                     <QuestionButtonModal />
                 </div>
-                <!-- <div class="dots">
+                <div class="dots">
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
-                </div> -->
+                </div>
                 <div class="arrows none">
                     <div></div>
                     <div></div>
                 </div>
                 </div>
                 <img src="/public/images/banner.png" alt="sources" class="img">
-                <!-- <div class="arrows  desktop-arrows">
+                <div class="arrows  desktop-arrows">
                     <div></div>
                     <div></div>
-                </div> -->
+                </div>
             </div>
         </div>
+</template> -->
+
+<template>
+  <div class="container">
+    <div class="flex">
+      <div class="text-content">
+        <h2>{{ title }}</h2>
+        <img v-if="image" :src="image" :alt="title" class="none">
+        <p v-if="description">{{ description }}</p>
+        <div class="btn">
+          <QuestionButtonModal />
+        </div>
+      </div>
+      <img v-if="image" :src="image" :alt="title" class="img">
+    </div>
+  </div>
 </template>
+
 <script setup>
 import { ref } from 'vue';
+
+const props = defineProps({
+  title: {
+    type: String,
+  },
+  image: {
+    type: String,
+    default: ''
+  },
+  description: {
+    type: String,
+  }
+});
+
 const isModalOpen = ref(false);
 
 const openQuestionModal = () => {
   isModalOpen.value = true;
 };
 </script>
+
 <style scoped>
 .flex {
     position: relative;
+    justify-content: space-between;
 }
 .text-content {
     margin: 83px 20px 0 40px;
+    width: 46%;
 }
 h2 {
     width: 95%;
@@ -56,6 +90,9 @@ p {
 }
 img {
     padding: 0;
+    width: 575px;
+    height: 372px;
+    object-fit: cover;
 }
 .none{
     display: none

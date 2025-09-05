@@ -199,23 +199,29 @@ const deleteCategory = async (id) => {
 const saveCategory = async () => {
   isLoading.value = true
   try {
-    const formData = new FormData()
-    
-    // Добавляем все поля формы
-    Object.keys(form).forEach(key => {
-      if (form[key] !== null && form[key] !== undefined) {
-        // Для parentId преобразуем в число или null
-        if (key === 'parentId') {
-          formData.append(key, form[key] ? form[key].toString() : '')
-        } else {
-          formData.append(key, form[key])
-        }
-      }
-    })
-    
-    // Добавляем файл, если есть
+    let imageUrl = form.imageUrl
+
+    // Если есть новое изображение, загружаем его
     if (uploadedFile.value) {
+      const formData = new FormData()
       formData.append('image', uploadedFile.value)
+      
+      const uploadResponse = await $fetch('/api/upload', {
+        method: 'POST',
+        body: formData
+      })
+      imageUrl = uploadResponse.imageUrl
+    }
+
+    // Подготавливаем данные для отправки
+    const requestData = { 
+      name: form.name,
+      slug: form.slug,
+      imageUrl: imageUrl, // используем новое или существующее изображение
+      seoTitle: form.seoTitle,
+      seoDescription: form.seoDescription,
+      description: form.description,
+      parentId: form.parentId
     }
     
     const url = isEditing.value ? `/api/categories/${form.id}` : '/api/categories'
@@ -223,13 +229,8 @@ const saveCategory = async () => {
 
     const response = await $fetch(url, {
       method,
-      body: formData
+      body: requestData
     })
-    
-    // Обновляем imageUrl если было загружено новое изображение
-    if (response.imageUrl) {
-      form.imageUrl = response.imageUrl
-    }
     
     closeModal()
     await loadCategories()
@@ -240,7 +241,6 @@ const saveCategory = async () => {
     isLoading.value = false
   }
 }
-
 
 // Закрытие модалки
 const closeModal = () => {

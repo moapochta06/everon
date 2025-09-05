@@ -1,49 +1,35 @@
-<template>
-    <!-- <div class="banner">
-        <Banner />
-    </div> -->
-    <div class="catalog">
-        <div class="container">
-            <h2>Каталог</h2>
-            <ul class="categories">
-                <li>
-                    <a href="">
-                        <img src="/public/images/catalog/UPS.png" alt="">
-                        <div>ИБП</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <img src="/public/images/catalog/categories2.png" alt="">
-                        <div>Шкафы и конструктивы</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <img src="/public/images/catalog/categories3.png" alt="">
-                        <div>Системы кондиционирования воздуха</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <img src="/public/images/catalog/categories4.png" alt="">
-                        <div>Системы распределения питания</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <img src="/public/images/catalog/categories5.png" alt="">
-                        <div>Стабилизаторы напряжения</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <img src="/public/images/catalog/categories6.png" alt="">
-                        <div>Инверторы</div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <Proposal />
-</template>
+// Сохранение категории
+const saveCategory = async () => {
+  isLoading.value = true
+  try {
+    const requestData = { 
+      name: form.name,
+      slug: form.slug,
+      imageUrl: form.imageUrl,
+      seoTitle: form.seoTitle,
+      seoDescription: form.seoDescription,
+      description: form.description,
+      parentId: form.parentId
+    }
+    
+    // Используем ID в URL для PUT запроса
+    const url = isEditing.value ? `/api/categories/${form.id}` : '/api/categories'
+    const method = isEditing.value ? 'PUT' : 'POST'
+
+    console.log('Sending to:', url)
+    console.log('Sending data:', requestData)
+
+    const response = await $fetch(url, {
+      method,
+      body: requestData
+    })
+    
+    closeModal()
+    await loadCategories()
+  } catch (error) {
+    console.error('Ошибка сохранения категории:', error)
+    alert(error.data?.message || 'Ошибка при сохранении категории')
+  } finally {
+    isLoading.value = false
+  }
+}
